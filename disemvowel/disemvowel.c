@@ -1,32 +1,40 @@
 #include <stdlib.h>
+#include <string.h>
 
 #include "disemvowel.h"
 
 char *disemvowel(char *str) {
-  //init stuff
-  char *result = (char*) calloc(count_vowels(str) + 1, sizeof(char));
-  char vowel = ('A'||'a'||'E'||'e'||'I'||'i'||'O'||'o'||'U'||'u'); //idk if this will work
+  int num = count_consonants(str);
+  char *result = (char*) calloc(num + 1, sizeof(char));
 
   //looping over the string
   int i;
-  for(i = 0; str[i] != '\0'; i++) {
-    if (str[i] != vowel) {
+  int len = strlen(str);
+  for(i = 0; i < len; i++) {
+    if (!is_vowel(str[i])) {
       result[i] = str[i];
     }
   }
 
-  return (char*) result;
+  return result;
 }
 
-//counts non-vowels in string for mem alloc
-int count_vowels(char *str) {
-  int result;
+//counts consonants in string for mem alloc
+int count_consonants(char *str) {
+  int num_c;
   int i;
-  char vowel = ('A'||'a'||'E'||'e'||'I'||'i'||'O'||'o'||'U'||'u');
-  for(i = 0; str[i] != '\0'; i++) {
-    if (str[i] != vowel) {
-      result++;
+  int len =strlen(str);
+  for(i = 0; i < len; i++) {
+    if (!is_vowel(str[i])) {
+      num_c++;
     }
   }
- return result;
+ return num_c;
+}
+
+int is_vowel(char c) {
+  if (c == 'A' || c == 'a' || c == 'E' || c == 'e' || c == 'I' || c == 'i' || c == 'O' || c == 'o' || c == 'U' || c == 'u') {
+    return 1;
+  }
+  return 0;
 }
