@@ -1,5 +1,7 @@
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
+#include <stdbool.h>
 
 #include "disemvowel.h"
 
@@ -9,19 +11,21 @@ char *disemvowel(char *str) {
 
   //looping over the string
   int i;
+  int j = 0;
   int len = strlen(str);
   for(i = 0; i < len; i++) {
     if (!is_vowel(str[i])) {
-      result[i] = str[i];
+      result[j] = str[i];
+      j++;
     }
   }
-
+  result[j] = '\0';
   return result;
 }
 
 //counts consonants in string for mem alloc
 int count_consonants(char *str) {
-  int num_c;
+  int num_c = 0;
   int i;
   int len =strlen(str);
   for(i = 0; i < len; i++) {
@@ -32,9 +36,9 @@ int count_consonants(char *str) {
  return num_c;
 }
 
-int is_vowel(char c) {
+bool is_vowel(char c) {
   if (c == 'A' || c == 'a' || c == 'E' || c == 'e' || c == 'I' || c == 'i' || c == 'O' || c == 'o' || c == 'U' || c == 'u') {
-    return 1;
+     return true;
   }
-  return 0;
+  return false;
 }

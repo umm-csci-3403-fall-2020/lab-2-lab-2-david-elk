@@ -3,6 +3,6 @@
 
 char *disemvowel(char *str);
 int count_consonants(char *str);
-int is_vowel(char c);
+bool is_vowel(char c);
 
 #endif
